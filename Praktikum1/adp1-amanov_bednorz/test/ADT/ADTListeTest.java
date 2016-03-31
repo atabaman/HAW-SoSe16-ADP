@@ -1,66 +1,92 @@
 package ADT;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by tb_user on 3/30/2016.
+ * @author Thomas Bednorz
  */
 public class ADTListeTest {
 
-    private ADTListe liste;
-
-    @Before
-    public void setUp(){
-        liste = ADTListe.create();
-    }
-
     @Test
     public void create() throws Exception {
-        assertNotNull(liste);
+        ADTListe liste1 = ADTListe.create();
+        assertNotNull(liste1);
+        assertTrue(liste1.laenge().equals(0));
     }
 
     @Test
     public void isEmpty() throws Exception {
-        assertTrue(liste.isEmpty());
+        ADTListe liste1 = ADTListe.create();
+
+        assertTrue(liste1.isEmpty());
+
+        liste1.insert(1,1);
+
+        assertFalse(liste1.isEmpty());
     }
 
     @Test
     public void equal() throws Exception {
+        ADTListe liste1 = ADTListe.create();
+        ADTListe liste2 = ADTListe.create();
 
+        liste1.insert(1,1);
+        liste1.insert(2,2);
+        liste1.insert(2,3);
+
+        liste2.insert(1,1);
+        liste2.insert(2,2);
+
+        assertFalse(liste1.equal(liste2));
+
+        liste2.insert(2,3);
+
+        assertTrue(liste1.equal(liste2));
     }
 
     @Test
     public void laenge() throws Exception {
+        ADTListe liste1 = ADTListe.create();
+
+        assertTrue(liste1.laenge().equals(0));
+
+        liste1.insert(1,1);
+
+        assertTrue(liste1.laenge().equals(1));
+
+        liste1.insert(2,2);
+
+        assertTrue(liste1.laenge().equals(2));
+
+        liste1.delete(1);
+
+        assertTrue(liste1.laenge().equals(1));
+
+        liste1.delete(1);
+
+        assertTrue(liste1.laenge().equals(0));
 
     }
 
     @Test
     public void insert() throws Exception {
-        assertTrue(liste.laenge() == 0);
-        liste.insert(1,1);
-        System.out.println(liste.elements[0]);
-        System.out.println(liste.elements[1]);
-        System.out.println(liste.elements[2]);
-        System.out.println(liste.elements[3]);
-        System.out.println();
-        assertTrue(liste.laenge() == 1);
-        liste.insert(2,2);
-        System.out.println(liste.elements[0]);
-        System.out.println(liste.elements[1]);
-        System.out.println(liste.elements[2]);
-        System.out.println(liste.elements[3]);
-        System.out.println();
-        assertTrue(liste.laenge() == 2);
-        liste.insert(2,3);
-        assertTrue(liste.laenge() == 3);
-        System.out.println(liste.elements[0]);
-        System.out.println(liste.elements[1]);
-        System.out.println(liste.elements[2]);
-        System.out.println(liste.elements[3]);
+        ADTListe liste1 = ADTListe.create();
 
+        assertTrue(liste1.laenge() == 0);
+
+        liste1.insert(1,1);
+
+        assertTrue(liste1.laenge() == 1);
+
+        liste1.insert(2,2);
+
+        assertTrue(liste1.laenge() == 2);
+
+        liste1.insert(2,3);
+
+        assertTrue(liste1.laenge() == 3);
     }
 
     @Test
@@ -70,6 +96,15 @@ public class ADTListeTest {
 
     @Test
     public void find() throws Exception {
+        ADTListe liste1 = ADTListe.create();
+
+        assertTrue(liste1.find(1).equals(0));
+
+        liste1.insert(2,2);
+
+        assertTrue(liste1.find(1).equals(0));
+        assertTrue(liste1.find(2).equals(1));
+
 
     }
 
@@ -80,6 +115,22 @@ public class ADTListeTest {
 
     @Test
     public void concat() throws Exception {
+        ADTListe liste1 = ADTListe.create();
+        ADTListe liste2 = ADTListe.create();
+        ADTListe liste3 = ADTListe.create();
+
+        liste1.insert(1,1);
+        liste1.insert(2,1);
+
+        liste2.insert(1,3);
+        liste2.insert(2,4);
+
+        liste3.insert(1,1);
+        liste3.insert(2,2);
+        liste3.insert(3,3);
+        liste3.insert(4,4);
+
+
 
     }
 }

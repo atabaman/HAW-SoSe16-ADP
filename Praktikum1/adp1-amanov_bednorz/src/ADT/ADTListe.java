@@ -9,7 +9,7 @@ package ADT;
  */
 public class ADTListe {
 
-    public int[] elements;
+    private int[] elements;
     private int length;
 
 
@@ -18,16 +18,22 @@ public class ADTListe {
     }
 
     private ADTListe(){
-        elements = new int[1];
+        elements = new int[10];
         length = 0;
     }
 
     public boolean isEmpty(){
-        if (length == 0) return true;
+        if (laenge() == 0) return true;
         return false;
     }
 
     public boolean equal(ADTListe list){
+        if(!(this.laenge().equals(list.laenge()))) return false;
+
+        for(int elem : elements){
+            if(!(this.find(elem).equals(list.find(elem)))) return false;
+        }
+
         return true;
     }
 
@@ -43,21 +49,22 @@ public class ADTListe {
      * @param elem the elements that will be placed inside the list
      */
     public void insert(Integer pos, Integer elem){
-        // TODO insert at position 0
         if(pos < 1) return;
 
         ensureCapacity();
 
         if(pos > length){
-            append(elem);
+            elements[length] = elem;
         } else {
             moveElemsRight(pos);
-            elements[pos] = elem;
-            length++;
+            elements[pos-1] = elem;
         }
+            length++;
     }
 
-    public void delete(Integer pos){
+    public void delete(Integer pos) {
+        if( (pos  < 1) || (pos > laenge()) ) return;
+
         moveElemsLeft(pos);
         length--;
     }
@@ -68,13 +75,10 @@ public class ADTListe {
      * @return the position of the first occurence of elem, null if elem couldnt be found
      */
     public Integer find(Integer elem){
-    /*    for(int i = 1; i <= laenge(); i++){
-            if(elem.equals(elements[i])){
-                return i;
-            }
+        for(int i = 0; i <= laenge(); i++){
+            if(elem.equals(elements[i])) return (i+1);
         }
-        */
-        return null;
+        return 0;
     }
 
     /**
@@ -83,18 +87,16 @@ public class ADTListe {
      * @return The element at the specified postion, if no element at the positio exists, 'null' is returned
      */
     public Integer retrieve(Integer pos){
+        if(pos < 1 || pos > laenge()) return null;
+
         Integer elem = null;
+
+
         return elem;
     }
 
     public void concat(ADTListe aList){
 
-    }
-
-    /* Helper methods */
-    private void append(Integer elem){
-        elements[length+1] = elem;
-        length++;
     }
 
     /**
@@ -103,6 +105,7 @@ public class ADTListe {
      */
     private void ensureCapacity(){
         float percentage = length / elements.length;
+
         if(percentage <= 0.75){
             int[] newElements = new int[elements.length * 2];
 
@@ -119,7 +122,7 @@ public class ADTListe {
      * @param pos the position to start the move operation
      */
     private void moveElemsRight(Integer pos) {
-        for(int i = (length+1); i >= pos; i--){
+        for(int i = length; i >= pos; i--){
             elements[i] = elements[i-1];
         }
 
@@ -130,6 +133,8 @@ public class ADTListe {
      * @param pos the postion to start the move operation
      */
     private void moveElemsLeft(Integer pos){
-
+        for(int i = length; i >= pos; i--){
+            elements[i-1] = elements[i];
+        }
     }
 }
