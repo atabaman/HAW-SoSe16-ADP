@@ -79,14 +79,23 @@ public class ADTListeTest {
         liste1.insert(1,1);
 
         assertTrue(liste1.laenge() == 1);
+        assertTrue(liste1.find(1).equals(1));
 
         liste1.insert(2,2);
 
         assertTrue(liste1.laenge() == 2);
+        assertTrue(liste1.find(2).equals(2));
 
         liste1.insert(2,3);
 
         assertTrue(liste1.laenge() == 3);
+        assertTrue(liste1.find(2).equals(3));
+        assertTrue(liste1.find(3).equals(2));
+
+        liste1.insert(7,4);
+
+        assertTrue(liste1.laenge().equals(4));
+        assertTrue(liste1.find(4).equals(4));
     }
 
     @Test
@@ -110,7 +119,17 @@ public class ADTListeTest {
 
     @Test
     public void retrieve() throws Exception {
+        ADTListe liste1 = ADTListe.create();
+        liste1.insert(1,1);
+        liste1.insert(2,2);
 
+        assertTrue(liste1.retrieve(1).equals(1));
+
+        assertTrue(liste1.retrieve(1).equals(2));
+
+        assertNull(liste1.retrieve(1));
+
+        assertTrue(liste1.isEmpty());
     }
 
     @Test

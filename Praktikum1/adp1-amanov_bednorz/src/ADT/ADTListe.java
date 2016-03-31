@@ -9,7 +9,7 @@ package ADT;
  */
 public class ADTListe {
 
-    private int[] elements;
+    public int[] elements;
     private int length;
 
 
@@ -63,9 +63,9 @@ public class ADTListe {
     }
 
     public void delete(Integer pos) {
-        if( (pos  < 1) || (pos > laenge()) ) return;
+        if( (pos < 1) || (pos > laenge()) ) return;
 
-        moveElemsLeft(pos);
+        moveElemsLeft(pos+1);
         length--;
     }
 
@@ -89,7 +89,8 @@ public class ADTListe {
     public Integer retrieve(Integer pos){
         if(pos < 1 || pos > laenge()) return null;
 
-        Integer elem = null;
+        Integer elem = elements[pos-1];
+        delete(pos);
 
 
         return elem;
@@ -129,12 +130,12 @@ public class ADTListe {
     }
 
     /**
-     * Moves all elements lower than and including the element at pos one position to the right
+     * Moves all elements higher than and inclduing pos one postion to the left
      * @param pos the postion to start the move operation
      */
     private void moveElemsLeft(Integer pos){
-        for(int i = length; i >= pos; i--){
-            elements[i-1] = elements[i];
+        for(int i = pos; i <= length; i++){
+            elements[i-2] = elements[i-1];
         }
     }
 }
