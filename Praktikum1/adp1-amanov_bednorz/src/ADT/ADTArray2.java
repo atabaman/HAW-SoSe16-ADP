@@ -6,8 +6,6 @@ package ADT;
  */
 public class ADTArray2 {
 
-    private ADTListe elements = ADTListe.create();
-    
     public static ADTArray2 initA(Integer size){
         return new ADTArray2(size);
     }
@@ -21,8 +19,7 @@ public class ADTArray2 {
     }
 
     public Integer getA(Integer pos){
-        Integer elem = null;
-        return elem;
+        return null;
     }
 
     public Integer lengthA(){
