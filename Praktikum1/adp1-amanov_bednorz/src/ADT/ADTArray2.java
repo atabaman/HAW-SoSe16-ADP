@@ -6,6 +6,8 @@ package ADT;
  */
 public class ADTArray2 {
 
+    private ADTListe elements = ADTListe.create();
+    
     public static ADTArray2 initA(Integer size){
         return new ADTArray2(size);
     }
