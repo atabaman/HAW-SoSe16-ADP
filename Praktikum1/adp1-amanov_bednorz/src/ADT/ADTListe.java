@@ -37,10 +37,12 @@ public class ADTListe {
      * @return true if the length of the lists and the order of the elements is identical, else false
      */
     public boolean equal(ADTListe list){
+        if(isEmpty() && list.isEmpty()) return true;
+
         if(!(this.laenge().equals(list.laenge()))) return false;
 
         for(int elem : elements){
-            if(!(this.find(elem).equals(list.find(elem)))) return false;
+            if( !(this.find(elem).equals(list.find(elem))) ) return false;
         }
 
         return true;
@@ -129,9 +131,9 @@ public class ADTListe {
      * Doubles the size of the array if its filled more than 75% All exisitng elements get copied.
      */
     private void ensureCapacity(){
-        float percentage = length / elements.length;
+        float percentage = (float) length / elements.length;
 
-        if(percentage <= 0.75){
+        if(percentage >= 0.75){
             int[] newElements = new int[elements.length * 2];
 
             for(int i = 0; i <= length; i++){

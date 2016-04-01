@@ -6,10 +6,10 @@ package ADT;
  */
 public class ADTBTree {
 
-    ADTBTree leftSuc;
-    ADTBTree rightSuc;
-    Integer high;
-    Integer val;
+    private ADTBTree leftSuc;
+    private ADTBTree rightSuc;
+    private Integer high;
+    private Integer val;
 
     public static ADTBTree initBT(){
         return new ADTBTree();
