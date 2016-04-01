@@ -139,7 +139,7 @@ public class ADTListeTest {
         ADTListe liste3 = ADTListe.create();
 
         liste1.insert(1,1);
-        liste1.insert(2,1);
+        liste1.insert(2,2);
 
         liste2.insert(1,3);
         liste2.insert(2,4);
@@ -148,6 +148,9 @@ public class ADTListeTest {
         liste3.insert(2,2);
         liste3.insert(3,3);
         liste3.insert(4,4);
+
+        liste1.concat(liste2);
+        assertTrue(liste1.equal(liste3));
 
 
 

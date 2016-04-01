@@ -9,7 +9,7 @@ package ADT;
  */
 public class ADTListe {
 
-    public int[] elements;
+    private int[] elements;
     private int length;
 
 
@@ -22,11 +22,20 @@ public class ADTListe {
         length = 0;
     }
 
+    /**
+     * Asserts whether this is empty.
+     * @return true if the length is 0, else false
+     */
     public boolean isEmpty(){
         if (laenge() == 0) return true;
         return false;
     }
 
+    /**
+     * Asserts whether two ADTListe-objects are equal.
+     * @param list the ADTList which will be compared to this
+     * @return true if the length of the lists and the order of the elements is identical, else false
+     */
     public boolean equal(ADTListe list){
         if(!(this.laenge().equals(list.laenge()))) return false;
 
@@ -62,6 +71,10 @@ public class ADTListe {
             length++;
     }
 
+    /**
+     * Deletes the element at pos.
+     * @param pos the position at which the element will be deleted
+     */
     public void delete(Integer pos) {
         if( (pos < 1) || (pos > laenge()) ) return;
 
@@ -96,13 +109,24 @@ public class ADTListe {
         return elem;
     }
 
-    public void concat(ADTListe aList){
+    /**
+     * Takes the elements from the parameter and appennds them to the existing list
+     * @param list the list from which the elements get appended to this list
+     */
+    public void concat(ADTListe list){
+        if(list.isEmpty()) return;
+
+        int listLength = list.laenge();
+
+        for(int i = 1; i <= listLength; i++){
+            Integer elem = list.retrieve(1);
+            insert(laenge()+1,elem);
+        }
 
     }
 
     /**
-     * Ensure that the internally used arrays are never filled above 75%.
-     * If the arrays fail to meet this condition, the size is doubled and all elements are copied
+     * Doubles the size of the array if its filled more than 75% All exisitng elements get copied.
      */
     private void ensureCapacity(){
         float percentage = length / elements.length;
@@ -126,11 +150,10 @@ public class ADTListe {
         for(int i = length; i >= pos; i--){
             elements[i] = elements[i-1];
         }
-
     }
 
     /**
-     * Moves all elements higher than and inclduing pos one postion to the left
+     * Moves all elements higher than and inclduing the element at pos one postion to the left
      * @param pos the postion to start the move operation
      */
     private void moveElemsLeft(Integer pos){
